@@ -1,38 +1,29 @@
 # LilyPond Tools
 
-Schlanke Begleit-WebApp für LilyPond-Dateien aus Composition Engine / Minimal Composer.
+## Version 0.2.0 – erster Rendering-Teststand
 
-## Version 0.1.0
+Kleine eigenständige WebApp für LilyPond. Keine LilyPond-Funktionalität wird in Minimal Composer eingebaut.
 
-V0.1 legt bewusst nur die unabhängige Oberfläche und die Renderer-Schnittstelle fest. Die App enthält **keine eigene Notensatz-Implementierung**.
+### V0.2
+- .ly öffnen und speichern
+- echtes GNU LilyPond 2.27.1 via WebAssembly/Web Worker
+- SVG-Partitur im Browser
+- vom Renderer erzeugtes MIDI an den Browser-Player
+- kein externer Rendering-Server
 
-Ziel:
-- LilyPond-Quelltext öffnen/einfügen/bearbeiten
-- .ly speichern
-- Renderer austauschbar anbinden
-- gerenderte SVG-Partitur anzeigen
-- MIDI aus dem Renderer abspielen/speichern
-- später Deep-Link Minimal Composer ↔ LilyPond Tools
+Basis: `@jocelyn-stericker/lilypond-wasm` aus Hacklily (GPL-3.0-or-later). Der Renderer ist echtes LilyPond + Guile in WebAssembly, keine eigene Notensatzimplementierung.
 
-## Architekturregel
+### Architektur
+LilyPond Tools ist ausschließlich eine technische Darstellungsschicht **nach** der freien Komposition. Es macht keinerlei Formatvorgabe an die komponierende KI. Composition Engine 2.12.0 und Minimal Composer bleiben unverändert.
 
-Die App ist ein technisches Werkzeug **nach** der Komposition. Sie macht keinerlei Vorgaben an die komponierende KI. Die Composition Engine und Minimal Composer werden für V0.1 nicht verändert.
+### Lokal
+`npm install`
+`npm run dev`
 
-## Renderer
+### Build
+`npm run build`
 
-Die Recherche am 27.09.2026 ergab:
-- Spontini: leistungsfähig, aber Python-Server und für unser Ziel zu groß.
-- Hacklily: sehr passende Web-Oberfläche; Rendering erfolgt über einen separaten Renderer-Dienst.
-- lilypond-mcp/lilypond-wasi: echtes LilyPond als WASM/WASI, derzeit im geprüften Projekt über Node/WASI ausgeführt, nicht einfach als statische Browserbibliothek einsetzbar.
+Der Build kopiert die vier LilyPond-WASM-Laufzeitdateien nach `dist/wasm`, sodass die erzeugte WebApp statisch gehostet werden kann.
 
-Deshalb besitzt V0.1 eine kleine `RendererAdapter`-Grenze. Erst nach einem realen Rendering-Test wird entschieden, ob ein browserlokaler WASI-Adapter oder ein kleiner externer Renderer verwendet wird. So vermeiden wir eine falsche technische Festlegung.
-
-## Dateien
-
-- `index.html` – kleine Benutzeroberfläche
-- `app.js` – Datei-/Editor-/Renderer-Logik
-- `style.css` – Darstellung
-
-## Nächster Test
-
-Eine echte von Gemini erzeugte LilyPond-Komposition soll unverändert durch den Renderer laufen. Erst wenn SVG + MIDI zuverlässig erzeugt werden, wird der Renderer als Standard festgelegt.
+### Noch zu prüfen
+V0.2 ist bewusst ein Teststand. Vor der Anbindung an Minimal Composer muss eine echte Gemini-LilyPond-Komposition erfolgreich als SVG gerendert und als MIDI abgespielt werden.

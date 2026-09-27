@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>LilyPond Tools 0.2.0</title>
+  <title>LilyPond Tools 0.2.1</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <div><strong>LilyPond Tools</strong><span>0.2.0</span></div>
+  <div><strong>LilyPond Tools</strong><span>0.2.1</span></div>
   <nav>
     <label class="button">Öffnen<input id="openFile" type="file" accept=".ly,.ily,text/plain" hidden></label>
     <button id="saveSource">Speichern</button>
@@ -31,7 +31,7 @@
   <section class="preview">
     <div class="previewHead">
       <h2>Partitur</h2>
-      <audio id="player" controls hidden></audio>
+      <div id="midiPlayer" hidden><button id="play" type="button">▶︎</button> <button id="stop" type="button">■</button> <input id="seek" type="range" min="0" max="1" step="0.01" value="0"> <span id="time">0:00 / 0:00</span></div>
     </div>
     <div id="score" class="score">
       <p>LilyPond wird beim ersten Rendern im Browser geladen.</p>

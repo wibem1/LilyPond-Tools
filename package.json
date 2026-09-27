@@ -1,0 +1,16 @@
+{
+  "name": "lilypond-tools",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@jocelyn-stericker/lilypond-wasm": "2.27.1-build.0.0.6"
+  },
+  "devDependencies": {
+    "vite": "^8.0.0"
+  }
+}

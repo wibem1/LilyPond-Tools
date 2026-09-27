@@ -1,6 +1,6 @@
 {
   "name": "lilypond-tools",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,6 +8,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@tonejs/midi": "^2.0.28",
     "@jocelyn-stericker/lilypond-wasm": "https://slop.nettek.ca/api/packages/jocelyn-stericker/npm/%40jocelyn-stericker%2Flilypond-wasm/-/2.27.1-build.0.0.6/lilypond-wasm-2.27.1-build.0.0.6.tgz"
   },
   "devDependencies": {
